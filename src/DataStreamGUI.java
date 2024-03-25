@@ -72,8 +72,8 @@ class DataStreamGUI extends JFrame {
 
                     if (result == JFileChooser.APPROVE_OPTION) {
                         loadedFilePaths[index] = fileChooser.getSelectedFile().toPath();
-                        displayTextAreas[index].setText(""); // Clear the display area
-                        searchResultTextAreas[index].setText(""); // Clear the search result area
+                        displayTextAreas[index].setText("");
+                        searchResultTextAreas[index].setText("");
 
                         try {
                             List<String> lines = Files.readAllLines(loadedFilePaths[index]);
@@ -90,7 +90,7 @@ class DataStreamGUI extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                     if (loadedFilePaths[index] != null) {
                         String searchTerm = searchFields[index].getText().toLowerCase();
-                        searchResultTextAreas[index].setText(""); // Clear the search result area
+                        searchResultTextAreas[index].setText("");
 
                         try {
                             List<String> filteredLines = Files.lines(loadedFilePaths[index])
@@ -116,5 +116,12 @@ class DataStreamGUI extends JFrame {
         add(mainPanel);
         pack();
         setLocationRelativeTo(null);
+    }
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new DataStreamGUI().setVisible(true);
+            }
+        });
     }
 }
